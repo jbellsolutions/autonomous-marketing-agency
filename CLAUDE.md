@@ -1,148 +1,131 @@
-# Facebook Marketing Agency — Autonomous Business
+# Facebook Marketing Agency
 
 ## What This Is
 
-A full-service Facebook marketing agency structured as a Paperclip-style autonomous business with three divisions. Internal for now, architected to sell as a service.
+One machine that does one job well: **scrape winning ads → create better ads → publish → build funnels → optimize → repeat.**
 
-## Architecture
+Three integrated systems, one pipeline:
 
-**Orchestration:** Claude Code scheduled tasks (execution) + Paperclip agent patterns (role design)
-**Communication:** File-based shared data hub at `data/shared/` — JSON files are the message bus
-**Browser Automation:** Claude in Chrome MCP tools for all Facebook Ads Manager and publishing operations
+1. **Eddie Vibe Marketer** — Scrapes competitor ads, generates winning scripts in your brand voice, produces creatives
+2. **Titans Council** — 18 legendary copywriter agents that review and sharpen every piece of copy
+3. **Funnel Flow AI** — Builds conversion funnels in Go High Level via browser automation
 
-## The Three Divisions
-
-### Division 1: Paid Ads Agency
-Full lifecycle Facebook ads management:
-- Scrape winning ads from Meta Ad Library (Apify)
-- Analyze hooks, angles, copy, CTAs
-- Create campaigns in Ads Manager (browser automation)
-- Launch ads with Eddie-generated creatives
-- Monitor every 30 minutes (CPC, CPM, CTR, CPA, ROAS)
-- Auto-optimize: kill losers, scale winners, adjust budgets
-- Retargeting funnel: TOF → MOF → BOF
-
-**Agents:** Media Buyer, Performance Monitor, Creative Strategist, Audience Researcher, Reporting Analyst
-**Agent prompts:** `agents/division-1-paid/`
-
-### Division 2: Organic Content Agency
-Cross-platform organic content engine:
-- Scrape winning organic posts (FB, IG, TikTok via Apify)
-- Generate content variations in brand voice (Claude)
-- Publish across platforms (browser automation)
-- Monitor engagement and respond to comments
-- Identify trends and replicate winning formats
-
-**Agents:** Content Researcher, Content Creator, Scheduler/Publisher, Community Manager, Trend Spotter
-**Agent prompts:** `agents/division-2-organic/`
-
-### Division 3: Eddie Vibe Marketer
-Self-improving ad creative generation pipeline (existing system):
-- Phase 1: Competitor research (Apify + Whisper)
-- Phase 2: Brand voice validation
-- Phase 3: Script generation (Claude × ICPs)
-- Phase 4: Creative production (UGC briefs + Arcads)
-- Phase 5: Performance optimization → learnings feedback loop
-
-**Source:** `eddie-vibe-marketer/` (symlinked from OpenClaw 10X)
-**Run:** `cd eddie-vibe-marketer && npm run full-cycle`
-
-## Shared Data Paths
-
-| Path | Purpose | Written By | Read By |
-|------|---------|------------|---------|
-| `data/shared/winning-patterns/paid-ads/` | Winning paid ad patterns | Div 1 | Div 2, 3 |
-| `data/shared/winning-patterns/organic/` | Winning organic patterns | Div 2 | Div 1, 3 |
-| `data/shared/performance-data/` | Campaign metrics snapshots | Div 1 | All |
-| `data/shared/creative-library/` | Generated scripts + creatives | Div 3 | Div 1, 2 |
-| `data/shared/audience-insights/` | ICP performance data | Div 1 | All |
-| `data/shared/content-calendar/` | Scheduled organic content | Div 2 | Div 2 |
-| `data/shared/reports/` | Daily/weekly/monthly reports | All | All |
-
-## Configuration Files
-
-- `config/agency.json` — Global settings: business name, clients, budgets
-- `config/thresholds.json` — Kill/scale/flag rules for ad optimization
-- `config/ad-accounts.json` — Meta ad account IDs and access tokens
-- `.env` — API keys (Apify, OpenAI, Anthropic, Arcads, Singular)
-
-## Optimization Decision Matrix (30-Minute Monitor)
+## The Pipeline
 
 ```
-CPA > 2x target AND spend > $50 AND 24h+     → KILL (pause ad set)
-ROAS < 0.5 AND 48h+                           → KILL
-CTR < 0.5% AND 24h+                           → FLAG for review
-CPA < target AND ROAS > 2x AND 48h+ stable    → SCALE (+20% budget)
-Frequency > 3.5                                → FLAG creative fatigue → trigger Eddie refresh
-Daily spend > 150% budget                      → CIRCUIT BREAKER (pause everything)
+SCRAPE: Apify scrapes Meta Ad Library for winning competitor ads
+  ↓
+TRANSCRIBE: OpenAI Whisper extracts hooks, angles, copy, CTAs
+  ↓
+ANALYZE: Titans Council (18 copywriters) reviews winning patterns
+  ↓
+GENERATE: Claude creates 50-200+ script variations × ICPs in brand voice
+  ↓
+QUALITY GATE: Writing rules filter + Titans quality review
+  ↓
+PRODUCE: UGC creator briefs + AI actor videos (Arcads/HeyGen)
+  ↓
+PUBLISH: Ads launched in Facebook Ads Manager
+  ↓
+FUNNEL: Funnel Flow AI builds landing pages in GHL
+  ↓
+OPTIMIZE: Performance data feeds back → next cycle gets smarter
 ```
 
-## Campaign Structure
-
-- **Testing (ABO):** $5-20/day per ad set, 3-5 ads each, broad targeting
-- **Scaling (CBO):** Winners graduated at 3-5x test budget
-- **Retargeting TOF:** Prospecting (lookalikes, interests, broad)
-- **Retargeting MOF:** Video viewers (25/50/75%), page engagers
-- **Retargeting BOF:** Website visitors, add-to-cart, checkout
-- **Naming:** `[Client]_[Obj]_[Audience]_[Creative]_[Date]`
-
-## Scheduled Tasks
-
-| Task | Cron | Division |
-|------|------|----------|
-| ads-monitor-30min | `*/30 6-23 * * *` | Div 1 |
-| daily-report | `0 8 * * *` | Div 1 |
-| weekly-strategy | `0 9 * * 1` | Div 1 |
-| creative-refresh | On fatigue trigger | Div 1→3 |
-| organic-scraper | `0 */6 * * *` | Div 2 |
-| organic-publisher | `0 9,13,17 * * *` | Div 2 |
-| community-responder | `0 */2 * * *` | Div 2 |
-| eddie-cycle | `0 3 * * 0` | Div 3 |
-
-## Alerting
-
-| Tier | Trigger | Action |
-|------|---------|--------|
-| P0 Critical | Spend >150% daily budget | Auto-pause all, Slack DM |
-| P1 Urgent | CPA >3x target for 24h | Auto-pause ad set, Slack alert |
-| P2 Warning | Frequency >3.5 | Queue creative refresh, Slack |
-| P3 Info | Daily report ready | Slack #ads-reports |
-
-## Cross-Division Data Flow
-
-```
-Div 1 scrapes winning PAID ads → winning-patterns/paid-ads/
-  ↓
-Div 2 reads paid patterns → adapts for organic → winning-patterns/organic/
-  ↓
-Div 3 (Eddie) reads BOTH → generates scripts → creative-library/
-  ↓
-Div 1 launches Eddie creatives as ads → monitors → performance-data/
-  ↓
-Performance data → Div 3 learnings → next cycle gets smarter
-```
-
-## Brand Voice
-
-Symlinked from `eddie-vibe-marketer/brand-voice/`:
-- `writing-rules.md` — Anti-AI-slop rules
-- `voice.md` — Brand tone, vocabulary, example scripts
-- `product.md` — Product features, proof points
-- `icp.md` — Audience personas (multiplication factor)
-
-## Running the Agency
+## Running It
 
 ```bash
-# Full Eddie Vibe Marketer cycle
+# Full creative generation cycle
 cd eddie-vibe-marketer && npm run full-cycle
 
 # Individual phases
-npm run phase1:research
-npm run phase3:generate
-npm run phase4:produce
-npm run phase5:optimize
+cd eddie-vibe-marketer && npm run phase1:research    # Scrape competitor ads
+cd eddie-vibe-marketer && npm run phase3:generate    # Generate scripts
+cd eddie-vibe-marketer && npm run phase4:produce     # Create briefs + videos
+cd eddie-vibe-marketer && npm run phase5:optimize    # Analyze performance
 
-# Monitoring (runs via scheduled tasks automatically)
-# Manual trigger:
-claude -p "Run the ads monitor check now"
+# Titans Council (run on any offer/campaign brief)
+# Use /titans skill from the titans-council/ directory
+
+# Build a funnel
+# Use /build-funnel skill from funnel-flow-ai/ directory
+```
+
+## Project Structure
+
+```
+facebook-marketing-agency/
+├── CLAUDE.md                      # This file
+├── eddie-vibe-marketer/           # Symlink → ad scraping + script generation
+├── titans-council/                # 18 copywriter agents + swipe file
+├── funnel-flow-ai/                # Autonomous funnel builder (GHL)
+├── campaigns/                     # Campaign-specific configs
+│   └── staffing-recruiting/       # First campaign
+│       ├── GRAND-SLAM-OFFER.md    # Hormozi-style offer
+│       ├── brand-voice/           # Voice, product, ICP, writing rules
+│       └── research-config.json   # Competitor keywords for scraping
+├── config/                        # Global configs
+│   ├── thresholds.json            # Kill/scale/flag optimization rules
+│   ├── agency.json                # Campaign structure + naming
+│   ├── budgets.json               # Budget pacing rules
+│   └── ad-accounts.json           # Meta account IDs
+└── data/shared/                   # Cross-system data hub
+    ├── winning-patterns/          # Scraped ad intelligence
+    ├── creative-library/          # Generated scripts + creatives
+    ├── performance-data/          # Campaign metrics
+    └── audience-insights/         # ICP performance
+```
+
+## Integrated Systems
+
+### Eddie Vibe Marketer (`eddie-vibe-marketer/`)
+Self-improving ad creative pipeline. Scrapes → generates → produces → optimizes.
+- Config: `eddie-vibe-marketer/config/research-config.json`
+- Brand voice: `eddie-vibe-marketer/brand-voice/`
+- API keys: `eddie-vibe-marketer/.env`
+
+### Titans Council (`titans-council/`)
+18 direct response copywriter agents that produce headlines, hooks, positioning, and copy:
+- Eugene Schwartz, Jay Abraham, Todd Brown, Dan Kennedy, Gary Bencivenga
+- Brian Kurtz, Alex Hormozi, Perry Marshall, Joe Sugarman, Bill Mueller
+- Jon Buchan, Lead Gen Jay, Liam Ottley, Tom Bilyeu, Ken McCarthy
+- Fred Catona, Greg Renker, Gordon Grossman
+
+Plus 3 Quality Gate agents (Creator, Critic, Approver).
+
+Use the council to sharpen offer positioning and ad copy before running through Eddie.
+
+### Funnel Flow AI (`funnel-flow-ai/`)
+Builds funnels in Go High Level via browser automation:
+- Lead Gen Opt-In (10 min)
+- VSL + Application (20 min)
+- Webinar Registration (20 min)
+- Full Sales (30 min)
+- Challenge Funnel (45 min)
+
+All funnels built in DRAFT mode. Human activates.
+
+## Campaign: Staffing & Recruiting (Active)
+
+**Offer:** AI Staffing Agency Upgrade
+- Entry: $997 AI Staffing Audit
+- Core: $2,000 + $300/mo Complete AI System
+- Premium: $5,000 + $300/mo Autonomous Machine
+- Partnership: ~$1,600/mo full-time integrator
+
+**Ad angles:** Fear of AI replacement, recruiter burnout, competitive advantage, cost comparison, partnership play, case study proof.
+
+**Targeting:** Staffing agency owners, recruiting VPs, temp agency operators. 5-50 employees, US-based.
+
+See `campaigns/staffing-recruiting/GRAND-SLAM-OFFER.md` for full details.
+
+## Optimization Rules
+
+```
+CPA > 2x target AND spend > $50 AND 24h+  → KILL
+ROAS < 0.5 AND 48h+                       → KILL
+CTR < 0.5% AND 24h+                       → FLAG
+CPA < target AND ROAS > 2x AND 48h+       → SCALE (+20%)
+Frequency > 3.5                            → REFRESH creatives
+Daily spend > 150% budget                  → PAUSE ALL
 ```
