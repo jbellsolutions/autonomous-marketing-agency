@@ -1,0 +1,32 @@
+{
+  "name": "facebook-marketing-agency",
+  "version": "1.0.0",
+  "description": "Autonomous Facebook Marketing Agency - Three Divisions: Paid Ads, Organic Content, Eddie Vibe Marketer",
+  "main": "scripts/setup.js",
+  "scripts": {
+    "setup": "node scripts/setup.js",
+    "monitor": "node scripts/browser-automation/ads-manager-monitor.js",
+    "create-campaign": "node scripts/browser-automation/create-campaign.js",
+    "scrape-organic": "node scripts/scrapers/organic-facebook.js",
+    "scrape-ads": "node scripts/scrapers/ad-library-enhanced.js",
+    "daily-report": "node scripts/reporting/daily-snapshot.js",
+    "weekly-report": "node scripts/reporting/weekly-strategy.js",
+    "analyze-hooks": "node scripts/analysis/hook-analyzer.js",
+    "check-fatigue": "node scripts/analysis/creative-fatigue.js",
+    "eddie-cycle": "cd eddie-vibe-marketer && npm run full-cycle"
+  },
+  "dependencies": {
+    "apify-client": "^2.9.0",
+    "openai": "^4.52.0",
+    "@anthropic-ai/sdk": "^0.30.0",
+    "dotenv": "^16.4.0",
+    "axios": "^1.7.0",
+    "csv-writer": "^1.6.0",
+    "csv-parser": "^3.0.0",
+    "dayjs": "^1.11.0"
+  },
+  "devDependencies": {},
+  "keywords": ["facebook-ads", "marketing-agency", "ai-agents", "autonomous"],
+  "license": "UNLICENSED",
+  "private": true
+}

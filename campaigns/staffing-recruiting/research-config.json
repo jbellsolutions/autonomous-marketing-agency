@@ -1,0 +1,55 @@
+{
+  "campaign": "staffing-recruiting",
+  "meta_ad_library": {
+    "apify_actor_id": "apify/facebook-ads-scraper",
+    "default_country": "US",
+    "ad_type": "ALL",
+    "active_only": true,
+    "max_ads_per_competitor": 30,
+    "sort_by": "longest_running"
+  },
+  "competitors": [
+    {
+      "name": "Staffing-AI-Tools",
+      "keywords": ["staffing agency AI", "recruiting automation", "AI recruiting software"],
+      "notes": "General AI-for-staffing advertisers"
+    },
+    {
+      "name": "Bullhorn",
+      "keywords": ["Bullhorn staffing", "Bullhorn ATS", "staffing software"],
+      "notes": "Largest staffing-specific ATS — study their messaging and angles"
+    },
+    {
+      "name": "Sense-HQ",
+      "keywords": ["Sense HQ staffing", "staffing AI automation", "recruiting engagement"],
+      "notes": "AI-powered talent engagement platform for staffing agencies"
+    },
+    {
+      "name": "Hireez",
+      "keywords": ["Hireez recruiting", "AI sourcing", "talent intelligence"],
+      "notes": "AI sourcing and talent intelligence platform"
+    },
+    {
+      "name": "Staffing-General",
+      "keywords": ["staffing agency solutions", "staffing technology", "recruit faster"],
+      "notes": "Broad staffing technology advertisers"
+    },
+    {
+      "name": "AI-Business-Tools",
+      "keywords": ["AI for business", "AI automation small business", "AI business operations"],
+      "notes": "General AI-for-business advertisers — cross-reference with staffing"
+    }
+  ],
+  "whisper": {
+    "model": "whisper-1",
+    "language": "en",
+    "response_format": "verbose_json"
+  },
+  "output_dir": "./data/shared/winning-patterns/paid-ads",
+  "eddie_integration": {
+    "brand_voice_dir": "./campaigns/staffing-recruiting/brand-voice",
+    "icp_file": "./campaigns/staffing-recruiting/brand-voice/icp.md",
+    "scripts_output": "./data/shared/creative-library/staffing",
+    "creatives_output": "./data/shared/creative-library/staffing/creatives"
+  }
+}

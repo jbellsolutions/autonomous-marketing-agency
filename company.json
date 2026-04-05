@@ -1,0 +1,116 @@
+{
+  "company_name": "Facebook Marketing Agency",
+  "company_type": "autonomous_ai_business",
+  "model": "paperclip_style",
+  "status": "internal",
+  "description": "Full-service Facebook marketing agency with three autonomous divisions: Paid Ads, Organic Content, and Self-Improving Creative Generation (Eddie Vibe Marketer).",
+
+  "divisions": {
+    "division_1_paid_ads": {
+      "name": "Paid Ads Agency",
+      "description": "Full lifecycle Facebook ads management from research to optimization",
+      "agents": [
+        {
+          "role": "performance_monitor",
+          "prompt_file": "agents/division-1-paid/performance-monitor.md",
+          "heartbeat_minutes": 30,
+          "scheduled_task": "ads-monitor-30min",
+          "priority": "P0"
+        },
+        {
+          "role": "media_buyer",
+          "prompt_file": "agents/division-1-paid/media-buyer.md",
+          "heartbeat_minutes": null,
+          "trigger": "on_demand",
+          "priority": "P1"
+        },
+        {
+          "role": "creative_strategist",
+          "prompt_file": "agents/division-1-paid/creative-strategist.md",
+          "heartbeat_minutes": 1440,
+          "scheduled_task": "creative-refresh",
+          "priority": "P2"
+        },
+        {
+          "role": "audience_researcher",
+          "prompt_file": "agents/division-1-paid/audience-researcher.md",
+          "heartbeat_minutes": 10080,
+          "scheduled_task": "weekly-strategy",
+          "priority": "P3"
+        },
+        {
+          "role": "reporting_analyst",
+          "prompt_file": "agents/division-1-paid/reporting-analyst.md",
+          "heartbeat_minutes": 1440,
+          "scheduled_task": "daily-report",
+          "priority": "P2"
+        }
+      ]
+    },
+    "division_2_organic": {
+      "name": "Organic Content Agency",
+      "description": "Cross-platform organic content creation and publishing",
+      "agents": [
+        {
+          "role": "content_researcher",
+          "prompt_file": "agents/division-2-organic/content-researcher.md",
+          "heartbeat_minutes": 360,
+          "scheduled_task": "organic-scraper",
+          "priority": "P2"
+        },
+        {
+          "role": "content_creator",
+          "prompt_file": "agents/division-2-organic/content-creator.md",
+          "heartbeat_minutes": 1440,
+          "trigger": "after_research",
+          "priority": "P2"
+        },
+        {
+          "role": "scheduler",
+          "prompt_file": "agents/division-2-organic/scheduler.md",
+          "heartbeat_minutes": 480,
+          "scheduled_task": "organic-publisher",
+          "priority": "P2"
+        },
+        {
+          "role": "community_manager",
+          "prompt_file": "agents/division-2-organic/community-manager.md",
+          "heartbeat_minutes": 120,
+          "scheduled_task": "community-responder",
+          "priority": "P1"
+        },
+        {
+          "role": "trend_spotter",
+          "prompt_file": "agents/division-2-organic/trend-spotter.md",
+          "heartbeat_minutes": 1440,
+          "trigger": "daily",
+          "priority": "P3"
+        }
+      ]
+    },
+    "division_3_eddie": {
+      "name": "Eddie Vibe Marketer",
+      "description": "Self-improving ad creative generation pipeline",
+      "source": "eddie-vibe-marketer/",
+      "run_command": "cd eddie-vibe-marketer && npm run full-cycle",
+      "heartbeat_minutes": 10080,
+      "scheduled_task": "eddie-cycle"
+    }
+  },
+
+  "infrastructure": {
+    "execution_engine": "claude_code_scheduled_tasks",
+    "browser_automation": "claude_in_chrome_mcp",
+    "data_layer": "file_based_json",
+    "alerting": "slack",
+    "reporting": ["slack_canvas", "gmail_draft"]
+  },
+
+  "cost_estimate_monthly": {
+    "claude_max": "existing",
+    "apify_scraping": "$30-75",
+    "openai_whisper": "$5-15",
+    "n8n_optional": "$0-20",
+    "total_new": "$35-110"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "response_rules": {
+    "tone": "conversational, helpful, authentic — never corporate",
+    "max_response_length_words": 50,
+    "response_time_target_minutes": 120,
+    "always_respond_to": ["questions", "positive_feedback", "product_inquiries"],
+    "escalate_to_human": ["complaints", "refund_requests", "negative_sentiment", "profanity", "legal_mentions"],
+    "never_auto_respond_to": ["trolling", "spam", "hate_speech"],
+    "emoji_usage": "light — 1-2 per response max",
+    "cta_in_replies": false
+  },
+  "sentiment_classification": {
+    "positive": ["love", "amazing", "great", "awesome", "perfect", "thank"],
+    "negative": ["hate", "terrible", "worst", "scam", "refund", "broken", "disappointed"],
+    "question": ["how", "what", "when", "where", "can I", "does it", "is there"],
+    "lead_signal": ["price", "cost", "buy", "purchase", "sign up", "link", "where to get"]
+  },
+  "escalation": {
+    "slack_channel": "",
+    "include_screenshot": true,
+    "include_post_link": true,
+    "include_user_history": false
+  }
+}

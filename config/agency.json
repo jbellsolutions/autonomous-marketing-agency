@@ -1,0 +1,86 @@
+{
+  "business": {
+    "name": "Facebook Marketing Agency",
+    "type": "internal",
+    "divisions": ["paid_ads", "organic_content", "eddie_vibe_marketer"]
+  },
+
+  "clients": [
+    {
+      "name": "Internal",
+      "id": "internal-001",
+      "ad_account_id": "",
+      "daily_budget_usd": 100,
+      "monthly_budget_usd": 3000,
+      "cpa_target_usd": 25.00,
+      "roas_target": 2.0,
+      "brand_voice_dir": "brand-voice/",
+      "platforms": ["facebook", "instagram"],
+      "active": true
+    }
+  ],
+
+  "platforms": {
+    "facebook": {
+      "ads_manager_url": "https://business.facebook.com/adsmanager",
+      "ad_library_url": "https://www.facebook.com/ads/library",
+      "page_url": "",
+      "automation_method": "browser"
+    },
+    "instagram": {
+      "automation_method": "browser",
+      "publishing_via": "facebook_business_suite"
+    },
+    "tiktok": {
+      "automation_method": "browser",
+      "scraping_via": "apify"
+    }
+  },
+
+  "slack_channels": {
+    "ads_alerts": "",
+    "ads_reports": "",
+    "organic_content": "",
+    "general": ""
+  },
+
+  "campaign_structure": {
+    "testing": {
+      "type": "ABO",
+      "daily_budget_per_adset_usd": 10,
+      "ads_per_adset": 3,
+      "min_test_duration_hours": 48,
+      "targeting": "broad"
+    },
+    "scaling": {
+      "type": "CBO",
+      "budget_multiplier": 3,
+      "graduation_criteria": {
+        "min_conversions": 5,
+        "cpa_below_target": true,
+        "min_stable_hours": 48
+      }
+    },
+    "retargeting": {
+      "tof": {
+        "audiences": ["lookalike_1pct", "lookalike_3pct", "broad_interests"],
+        "budget_allocation_pct": 60
+      },
+      "mof": {
+        "audiences": ["video_viewers_75pct", "page_engagers_30d", "ig_engagers_30d"],
+        "budget_allocation_pct": 25
+      },
+      "bof": {
+        "audiences": ["website_visitors_7d", "add_to_cart_14d", "checkout_30d"],
+        "budget_allocation_pct": 15
+      }
+    }
+  },
+
+  "naming_convention": {
+    "campaign": "[Client]_[Objective]_[FunnelStage]_[Date]",
+    "adset": "[Audience]_[Placement]_[Age]",
+    "ad": "[CreativeType]_[Hook]_[Version]",
+    "example": "Internal_Conversions_TOF_20260328 / Lookalike1pct_AllPlacements_25-54 / UGC_PainPoint_v1"
+  }
+}

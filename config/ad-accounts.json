@@ -1,0 +1,25 @@
+{
+  "accounts": [
+    {
+      "name": "Primary Ad Account",
+      "account_id": "",
+      "business_id": "",
+      "ads_manager_url": "https://business.facebook.com/adsmanager",
+      "pixel_id": "",
+      "currency": "USD",
+      "timezone": "America/Los_Angeles",
+      "status": "active",
+      "notes": "Fill in after connecting to Facebook Business Manager"
+    }
+  ],
+
+  "competitors": [
+    {
+      "name": "Competitor 1",
+      "advertiser_id": "",
+      "ad_library_url": "",
+      "keywords": [],
+      "notes": "Find advertiser ID at facebook.com/ads/library"
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "optimization_rules": {
+    "kill_rules": [
+      {
+        "name": "high_cpa_kill",
+        "description": "Pause ad set when CPA exceeds 2x target after sufficient spend and time",
+        "conditions": {
+          "cpa_multiplier_above_target": 2.0,
+          "min_spend_usd": 50,
+          "min_hours_running": 24
+        },
+        "action": "pause_adset",
+        "alert_tier": "P1"
+      },
+      {
+        "name": "low_roas_kill",
+        "description": "Pause ad set when ROAS is critically low after 48 hours",
+        "conditions": {
+          "roas_below": 0.5,
+          "min_hours_running": 48
+        },
+        "action": "pause_adset",
+        "alert_tier": "P1"
+      }
+    ],
+    "scale_rules": [
+      {
+        "name": "winner_scale",
+        "description": "Increase budget for consistent winners",
+        "conditions": {
+          "cpa_below_target": true,
+          "roas_above": 2.0,
+          "min_hours_stable": 48,
+          "min_conversions": 5
+        },
+        "action": "increase_budget",
+        "budget_increase_percent": 20,
+        "max_daily_budget_usd": 500,
+        "stabilization_days": 3,
+        "alert_tier": "P3"
+      }
+    ],
+    "flag_rules": [
+      {
+        "name": "low_ctr_flag",
+        "description": "Flag for review when CTR is very low",
+        "conditions": {
+          "ctr_below_percent": 0.5,
+          "min_impressions": 1000,
+          "min_hours_running": 24
+        },
+        "action": "flag_for_review",
+        "alert_tier": "P2"
+      },
+      {
+        "name": "creative_fatigue",
+        "description": "Flag creative fatigue and trigger Eddie refresh",
+        "conditions": {
+          "frequency_above": 3.5
+        },
+        "action": "flag_fatigue",
+        "trigger": "eddie_creative_refresh",
+        "alert_tier": "P2"
+      },
+      {
+        "name": "ctr_declining",
+        "description": "Flag when CTR declines 3 consecutive days",
+        "conditions": {
+          "ctr_declining_days": 3
+        },
+        "action": "flag_fatigue",
+        "alert_tier": "P2"
+      }
+    ],
+    "circuit_breakers": [
+      {
+        "name": "overspend_emergency",
+        "description": "Pause ALL campaigns when daily spend exceeds 150% of budget",
+        "conditions": {
+          "daily_spend_percent_of_budget_above": 150
+        },
+        "action": "pause_all_campaigns",
+        "alert_tier": "P0"
+      }
+    ]
+  },
+
+  "default_targets": {
+    "cpa_target_usd": 25.00,
+    "roas_target": 2.0,
+    "ctr_target_percent": 1.0,
+    "daily_budget_usd": 100,
+    "monthly_budget_usd": 3000
+  },
+
+  "monitoring": {
+    "check_interval_minutes": 30,
+    "active_hours": "6-23",
+    "timezone": "America/Los_Angeles"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "paid_ads": {
+    "daily_budget_usd": 100,
+    "monthly_budget_usd": 3000,
+    "testing_allocation_pct": 30,
+    "scaling_allocation_pct": 50,
+    "retargeting_allocation_pct": 20,
+    "overspend_threshold_pct": 150,
+    "underspend_threshold_pct": 85,
+    "budget_increase_step_pct": 20,
+    "budget_increase_max_usd": 500,
+    "stabilization_days": 3
+  },
+  "organic": {
+    "apify_monthly_budget_usd": 50,
+    "content_creation_tools_usd": 0,
+    "notes": "Organic costs are primarily Apify scraping credits"
+  },
+  "eddie_vibe_marketer": {
+    "apify_per_cycle_usd": 15,
+    "whisper_per_cycle_usd": 10,
+    "claude_per_cycle_usd": 3,
+    "arcads_per_cycle_usd": 0,
+    "estimated_cycle_cost_usd": 28
+  }
+}

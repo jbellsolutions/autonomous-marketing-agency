@@ -1,0 +1,47 @@
+{
+  "platforms": {
+    "facebook": {
+      "page_id": "",
+      "target_posts_per_day": 2,
+      "target_engagement_rate_pct": 3.0,
+      "content_mix": {
+        "text_posts_pct": 20,
+        "image_posts_pct": 30,
+        "video_reels_pct": 30,
+        "carousel_pct": 20
+      },
+      "posting_times": ["09:00", "13:00", "17:00"],
+      "scraper_targets": []
+    },
+    "instagram": {
+      "account_id": "",
+      "target_posts_per_day": 2,
+      "target_engagement_rate_pct": 4.0,
+      "content_mix": {
+        "reels_pct": 50,
+        "carousel_pct": 30,
+        "single_image_pct": 10,
+        "stories_pct": 10
+      },
+      "posting_times": ["10:00", "14:00", "18:00"],
+      "scraper_targets": []
+    },
+    "tiktok": {
+      "account_id": "",
+      "target_posts_per_day": 1,
+      "target_engagement_rate_pct": 5.0,
+      "content_mix": {
+        "original_video_pct": 60,
+        "trend_adaptation_pct": 40
+      },
+      "posting_times": ["12:00", "19:00"],
+      "scraper_targets": []
+    }
+  },
+  "scraping": {
+    "max_posts_per_source": 50,
+    "min_engagement_threshold": 100,
+    "lookback_days": 30,
+    "sort_by": "engagement_rate"
+  }
+}
