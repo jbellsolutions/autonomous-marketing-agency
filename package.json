@@ -1,7 +1,7 @@
 {
-  "name": "facebook-marketing-agency",
-  "version": "1.0.0",
-  "description": "Autonomous Facebook Marketing Agency - Three Divisions: Paid Ads, Organic Content, Eddie Vibe Marketer",
+  "name": "autonomous-marketing-agency",
+  "version": "2.0.0",
+  "description": "Autonomous Marketing Agency — 3-layer AI pipeline: intelligence scraping, 18 Titan copywriter agents, and three creation teams (ads, content, funnels)",
   "main": "scripts/setup.js",
   "scripts": {
     "setup": "node scripts/setup.js",
@@ -26,7 +26,7 @@
     "dayjs": "^1.11.0"
   },
   "devDependencies": {},
-  "keywords": ["facebook-ads", "marketing-agency", "ai-agents", "autonomous"],
+  "keywords": ["marketing-agency", "ai-agents", "autonomous", "facebook-ads", "content-marketing", "copywriting", "funnels"],
   "license": "UNLICENSED",
   "private": true
 }

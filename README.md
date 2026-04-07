@@ -1,6 +1,6 @@
 <div align="center">
 
-# Facebook Marketing Agency
+# Autonomous Marketing Agency
 
 ### One Machine. Three Layers. Fully Autonomous.
 
@@ -34,7 +34,7 @@ This repo **is** that agency. Three autonomous layers that run the entire market
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│                    FACEBOOK MARKETING AGENCY                         │
+│                    AUTONOMOUS MARKETING AGENCY                         │
 │                                                                      │
 │  LAYER 1: INTELLIGENCE          Scrape → Transcribe → Structure     │
 │  LAYER 2: TITANS COUNCIL        18 Copywriters → Strategy Brief     │
@@ -255,7 +255,7 @@ Cycle 3+: Compounding intelligence
 ## Project Structure
 
 ```
-facebook-marketing-agency/
+autonomous-marketing-agency/
 ├── eddie-vibe-marketer/              # Core ad engine (7 formats, 585+ pieces/cycle)
 │   ├── scripts/                      # Pipeline phases (research → generate → produce → publish)
 │   ├── publisher/                    # Browser Use automation (Python)
@@ -291,8 +291,8 @@ facebook-marketing-agency/
 
 ```bash
 # 1. Clone & install
-git clone https://github.com/jbellsolutions/facebook-marketing-agency.git
-cd facebook-marketing-agency
+git clone https://github.com/jbellsolutions/autonomous-marketing-agency.git
+cd autonomous-marketing-agency
 npm install
 
 # 2. Install Eddie (the ad engine)
