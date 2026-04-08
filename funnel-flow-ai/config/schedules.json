@@ -1,0 +1,20 @@
+{
+  "funnel_builder": {
+    "cron": "0 9,14 * * 1-5",
+    "description": "Twice daily on weekdays (9am, 2pm)",
+    "timezone": "America/New_York",
+    "priority": "high",
+    "retry_on_failure": true,
+    "max_retries": 2
+  },
+  "health_check": {
+    "cron": "0 */4 * * *",
+    "description": "Every 4 hours",
+    "priority": "medium"
+  },
+  "template_catalog_refresh": {
+    "cron": "0 6 * * 1",
+    "description": "Weekly Monday 6am - rescan GHL for new templates",
+    "priority": "low"
+  }
+}

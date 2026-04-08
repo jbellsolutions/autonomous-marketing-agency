@@ -1,0 +1,28 @@
+{
+  "url": "https://app.gohighlevel.com",
+  "location_id": "Fk0BkQ526NRxmsgT6LhH",
+  "sub_account_name": "Circle of Greatness",
+  "auth_method": "browser-cookies",
+  "plan": "starter",
+  "api_access": false,
+  "navigation": {
+    "funnels": "/v2/location/{location_id}/funnels-websites/funnels",
+    "workflows": "/v2/location/{location_id}/automation/workflows",
+    "pipelines": "/v2/location/{location_id}/opportunities/pipelines",
+    "contacts": "/v2/location/{location_id}/contacts",
+    "email_templates": "/v2/location/{location_id}/marketing/emails"
+  },
+  "browser": {
+    "timeout_seconds": 120,
+    "page_load_wait": 5,
+    "element_wait": 3,
+    "screenshot_on_completion": true,
+    "screenshot_on_error": true
+  },
+  "upgrade_path": {
+    "plan": "unlimited",
+    "cost": "$297/mo",
+    "mcp_url": "https://services.leadconnectorhq.com/mcp/",
+    "benefits": "API access for contacts, pipelines, email templates, calendars — moves CRM ops from browser to API"
+  }
+}

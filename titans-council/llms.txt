@@ -1,0 +1,47 @@
+# Titans of Direct Response Mastermind Council
+
+> AI copywriter council with 18 legendary copywriter agents, 3 leadership agents, and a 3-agent Quality Gate.
+
+## What This Is
+
+A productized AI pipeline that runs any offer through 18 legendary copywriter agents (Schwartz, Abraham, Brown, Kennedy, Hormozi, and 13 more). Each agent independently analyzes the offer, then they deliberate through 3 council rounds to produce production-ready positioning, messaging, and launch strategy. A 3-agent Quality Gate reviews everything before it ships.
+
+## How It Works
+
+1. User provides a brief about an offer
+2. 18 copywriter agents each produce an independent take (parallel batches of 6)
+3. Council deliberation: Round 1 (V1), Round 2 (V2), Round 3 (Final)
+4. Quality Gate: Creator validates, Critic stress-tests, Approver decides ship/revise/send-back
+5. Optional Content Multiplier: up to 32 content pieces
+6. Deliverables packaged with client-facing README and published to private GitHub repo
+
+## Key Entry Points
+
+- CLAUDE.md: Full pipeline instructions (primary source of truth)
+- AGENTS.md: Complete agent roster
+- .claude/commands/titans.md: The /titans slash command
+- features.json: Machine-readable capability manifest
+- Titan-Genome-Content-Multiplier/SWIPE_FILE_CONTEXT.md: The copywriting DNA patterns
+
+## Agent Types
+
+- 18 Copywriter Agents (automatic): agents/*.md
+- 3 Leadership Agents (invoke-only): agents/leadership/*.md
+- 3 Quality Gate Agents (automatic after council): agents/quality_gate/*.md
+- 2 Infrastructure Agents (on-demand): .claude/agents/*.md
+
+## Project Structure
+
+- projects/{client-name}/{project-name}/ -- All client deliverables
+- agents/ -- Agent definition files
+- Titan-Genome-Content-Multiplier/ -- Library, templates, swipe files, Titan Genome DNA
+
+## Rules Summary
+
+- Each project is isolated (no cross-project memory)
+- All 18 copywriters participate in every project
+- Individual takes before council (never skip)
+- Exactly 3 council rounds
+- Quality Gate is mandatory before publishing
+- Every idea credits its originating copywriter
+- No generic AI output -- every piece reflects a specific copywriter voice

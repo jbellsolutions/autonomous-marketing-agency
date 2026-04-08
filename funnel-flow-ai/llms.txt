@@ -1,0 +1,18 @@
+# Funnel Flow AI
+
+Autonomous funnel building agent for Go High Level via browser automation.
+
+## What it does
+Receives funnel specs (client, offer, type), clones GHL template funnels, customizes every page (copy, forms, images, CTAs), sets up CRM (pipelines, workflows, email sequences), runs QA (desktop/mobile screenshots, form tests), and delivers via Slack/ClickUp/Gmail drafts.
+
+## Key components
+- playbooks/funnel-builder.md — Complete build procedure with browser navigation reference
+- skills/ — 4 slash commands: build-funnel, queue-project, qa-check, catalog-templates
+- state/ — Project queue, build history, GHL template registry, health status
+- config/ — GHL settings, rate limits, funnel type definitions, schedules
+
+## How it works
+Browser automation (Claude in Chrome) navigates GHL's visual funnel builder. Clones template funnels, edits each page element (headlines, CTAs, forms, images), configures workflows and pipelines. All funnels built in draft mode — human publishes. Supports 5 funnel types from simple opt-in (10 min) to full sales funnel (30 min).
+
+## Business context
+Part of AI Integrators (UsingAIToScale.com). Builds funnels for clients ($500-$2,500/build) and internal businesses. GHL Starter plan — no API access, everything via browser.

@@ -1,0 +1,44 @@
+{
+  "funnel_types": {
+    "lead-gen-optin": {
+      "name": "Lead Gen Opt-In",
+      "pages": ["opt-in", "thank-you"],
+      "required_elements": ["headline", "subheadline", "form", "cta_button"],
+      "optional_elements": ["video", "testimonials", "social_proof", "countdown"],
+      "estimated_build_minutes": 10,
+      "complexity": "simple"
+    },
+    "vsl-application": {
+      "name": "VSL + Application",
+      "pages": ["vsl-page", "application-form", "confirmation", "calendar-booking"],
+      "required_elements": ["video_embed", "headline", "bullet_points", "form", "calendar_widget"],
+      "optional_elements": ["testimonials", "pricing_table", "faq", "guarantee_badge"],
+      "estimated_build_minutes": 20,
+      "complexity": "medium"
+    },
+    "webinar-registration": {
+      "name": "Webinar Registration",
+      "pages": ["registration", "confirmation", "replay", "offer"],
+      "required_elements": ["headline", "date_time", "form", "countdown", "speaker_bio"],
+      "optional_elements": ["testimonials", "agenda", "bonus_stack"],
+      "estimated_build_minutes": 20,
+      "complexity": "medium"
+    },
+    "full-sales": {
+      "name": "Full Sales Funnel",
+      "pages": ["opt-in", "vsl", "application", "checkout", "upsell", "thank-you"],
+      "required_elements": ["all"],
+      "optional_elements": ["all"],
+      "estimated_build_minutes": 30,
+      "complexity": "complex"
+    },
+    "challenge-funnel": {
+      "name": "Challenge Funnel",
+      "pages": ["registration", "day-1", "day-2", "day-3", "day-4", "day-5", "offer", "checkout"],
+      "required_elements": ["video_embed", "headline", "form", "daily_content", "checkout"],
+      "optional_elements": ["community_link", "workbook", "bonus_stack", "countdown"],
+      "estimated_build_minutes": 45,
+      "complexity": "complex"
+    }
+  }
+}

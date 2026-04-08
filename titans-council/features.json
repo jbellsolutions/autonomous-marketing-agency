@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0.0",
+  "project_name": "Titans of Direct Response Mastermind Council",
+  "project_type": "ai-copywriter-council",
+  "description": "18 legendary copywriter agents independently analyze offers, deliberate through 3 council rounds, pass through a 3-agent Quality Gate, and produce production-ready deliverables.",
+  "features": {
+    "core_pipeline": {
+      "description": "The Titan Genome Content Multiplier pipeline",
+      "components": [
+        "18 copywriter agent individual takes",
+        "3-round council deliberation (V1, V2, Final)",
+        "3-agent Quality Gate (Creator, Critic, Approver)",
+        "Client-facing documentation generation",
+        "Private GitHub repo publishing"
+      ]
+    },
+    "agents": {
+      "copywriters": {
+        "count": 18,
+        "activation": "automatic",
+        "parallel_batches": 6,
+        "names": [
+          "Eugene Schwartz", "Jay Abraham", "Todd Brown", "Dan Kennedy",
+          "Alex Hormozi", "Brian Kurtz", "Gary Bencivenga", "Joe Sugarman",
+          "Bill Mueller", "Perry Marshall", "Jon Buchan", "Lead Gen Jay",
+          "Liam Ottley", "Tom Bilyeu", "Ken McCarthy", "Fred Catona",
+          "Greg Renker", "Gordon Grossman"
+        ]
+      },
+      "leadership": {
+        "count": 3,
+        "activation": "invoke-only",
+        "names": ["Colin Powell", "David Marquet", "Simon Sinek"]
+      },
+      "quality_gate": {
+        "count": 3,
+        "activation": "automatic-after-council",
+        "names": ["Creator QG", "Critic QG", "Approver QG"]
+      },
+      "infrastructure": {
+        "count": 2,
+        "activation": "on-demand",
+        "names": ["Security Reviewer", "Code Reviewer"]
+      }
+    },
+    "content_multiplier": {
+      "description": "Optional add-on producing up to 32 content pieces",
+      "max_pieces": 32,
+      "types": [
+        "emails", "sales pages", "lead magnets", "social calendars",
+        "video plans", "ad copy", "landing pages"
+      ]
+    },
+    "self_healing": {
+      "enabled": true,
+      "patterns_file": ".claude/healing/patterns.json",
+      "history_file": ".claude/healing/history.json"
+    },
+    "self_learning": {
+      "enabled": true,
+      "observations_file": ".claude/learning/observations.json",
+      "insights_file": ".claude/learning/insights.json",
+      "evolution_file": ".claude/learning/evolution.json"
+    }
+  },
+  "ai_tools": {
+    "claude": {
+      "config_file": "CLAUDE.md",
+      "commands": [".claude/commands/titans.md"],
+      "agents": [
+        ".claude/agents/security-reviewer.md",
+        ".claude/agents/code-reviewer.md"
+      ]
+    },
+    "cursor": {
+      "rules": [".cursor/rules/001-core-conventions.mdc"]
+    },
+    "gemini": {
+      "config_file": "GEMINI.md"
+    }
+  },
+  "slash_commands": {
+    "/titans": {
+      "description": "Run the full Titan Genome Content Multiplier pipeline",
+      "file": ".claude/commands/titans.md"
+    }
+  }
+}

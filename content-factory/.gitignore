@@ -1,0 +1,16 @@
+inbox/*
+!inbox/.gitkeep
+inbox/*/.processed
+inbox/*/.processing
+jobs/*
+!jobs/.gitkeep
+published/*
+!published/.gitkeep
+.env
+config/.env
+.slack_state.json
+.dashboard_state.json
+.railway
+.DS_Store
+*.pyc
+__pycache__/

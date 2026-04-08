@@ -33,8 +33,11 @@ build/
 tmp/
 temp/
 .cache/
+# Submodule repos (linked separately)
 eddie-vibe-marketer
-brand-voice/source
-funnel-flow-ai
-titans-council
-content-factory
+
+# Internal state
+.claude/
+state/
+*.pyc
+__pycache__/

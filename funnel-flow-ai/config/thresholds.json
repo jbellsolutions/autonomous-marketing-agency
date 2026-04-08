@@ -1,0 +1,27 @@
+{
+  "builds": {
+    "max_per_run": 2,
+    "max_per_day": 4,
+    "max_build_minutes": 45,
+    "max_pages_per_funnel": 10,
+    "qa_required": true,
+    "auto_publish": false
+  },
+  "quality": {
+    "min_pages_for_qa": 1,
+    "screenshot_desktop": true,
+    "screenshot_mobile": true,
+    "test_form_submission": true,
+    "verify_workflow_connected": true
+  },
+  "alerting": {
+    "stale_queue_hours": 48,
+    "build_failure_threshold": 3,
+    "auth_failure_action": "stop_and_alert",
+    "escalation_levels": ["slack_channel", "slack_dm"]
+  },
+  "budgets": {
+    "max_tokens_per_run": 75000,
+    "monthly_api_budget_usd": 50
+  }
+}
